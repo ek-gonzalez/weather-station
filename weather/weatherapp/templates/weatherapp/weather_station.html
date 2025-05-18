@@ -1,0 +1,32 @@
+<!-- weather_station.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Station</title>
+</head>
+<body>
+    <h1>Weather Station Data Collection</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+    <h2>Recent Weather Data</h2>
+    <table border="1">
+        <tr>
+            <th>Timestamp</th>
+            <th>Temperature (°C)</th>
+            <th>Humidity (%)</th>
+            <th>Pressure (hPa)</th>
+        </tr>
+        {% for data in weather_data %}
+        <tr>
+            <td>{{ data.timestamp }}</td>
+            <td>{{ data.temperature }}</td>
+            <td>{{ data.humidity }}</td>
+            <td>{{ data.pressure }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
